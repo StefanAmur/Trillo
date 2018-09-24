@@ -200,7 +200,7 @@
 .overview {
     display: flex;
     align-items: center; //aligns the items vertically centered.
-    border-bottom: 1px solid var(--color-grey-light-2);
+    border-bottom: var(--line);
     
     &__heading {
         font-size: 2.25rem;
@@ -295,5 +295,78 @@
     100% {
         transform: scale(1);
         box-shadow: none;
+    }
+}
+
+//   PARAGRAPH
+.paragraph:not(:last-of-type) {
+    margin-bottom: 2rem;
+}
+
+
+//  LIST
+.list {
+    list-style: none;
+    margin: 3rem 0;
+    padding: 3rem;
+    border-top: var(--line);
+    border-bottom: var(--line);
+
+    display: flex;
+    flex-wrap: wrap;// Allows elements to wrap on new lines.
+
+    &__item {
+        flex: 0 0 50%; // Makes the elements of the list the same width (50%) in order to have two equal columns.
+        margin-bottom: .7rem;
+    }
+
+    //before each item in the list we place an svg, a small chevron ( > )
+    &__item::before {
+        content:"";
+        display: inline-block;
+        height: 1rem;
+        width: 1rem;
+        margin-right: .7rem;
+
+        //Older browsers
+        // background-image: url(../img/chevron-thin-right.svg);
+        // background-size: cover;
+
+        //Newer browsers - masks - setting back-color and adding mask to show the color only where the image is, the chevron in this case.
+        background-color: var(--color-primary);
+        -webkit-mask-image: url(../img/chevron-thin-right.svg);
+        mask-image: url(../img/chevron-thin-right.svg);
+        -webkit-mask-size: cover;
+        mask-size: cover;
+    }
+}
+
+
+//  RECOMMEND
+.recommend {
+    font-size: 1.3rem;
+    color: var(--color-grey-dark-3);
+
+    display: flex;
+    align-items: center;
+
+    &__count {
+        margin-right: auto; //pushes the friends photos maximum to the right.
+    }
+
+    &__friends {
+
+    }
+
+    &__photo {
+        box-sizing: content-box; // by setting the box-sizing to the default of content-box we make the white border to be outside of the photo. Otherwise it will make the photos look smaller.
+        height: 4rem;
+        widows: 4rem;
+        border-radius: 50%;
+        border: 3px solid #fff;
+
+        &:not(:last-child) {
+            margin-right: -1.5rem; //by setting a negative margin right, we stack the photos a little bit on top of each other.
+        }
     }
 }

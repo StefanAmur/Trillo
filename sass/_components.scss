@@ -12,6 +12,12 @@
     align-items: center;
     justify-content: center;
 
+    @media only screen and (max-width: $bp-smallest) {
+        order: 1;
+        flex: 0 0 100%;
+        background-color: var(--color-grey-light-2);
+    }
+
     &__input {
         font-family: inherit;
         font-size: inherit;
@@ -120,12 +126,25 @@
     font-size: 1.4rem;
     list-style: none;
     margin-top: 3.5rem;
+
+    @media only screen and (max-width: $bp-medium) {
+        display: flex;
+        margin: 0;
+    }
     
     &__item {
         position: relative;
 
         &:not(:last-child) {
             margin-bottom: .5rem;
+
+            @media only screen and (max-width: $bp-medium) {
+                margin-bottom: 0;
+            }
+        }
+
+        @media only screen and (max-width: $bp-medium) {
+            flex: 1;
         }
     }
 
@@ -165,6 +184,16 @@
 
         display: flex;
         align-items: center;
+
+        @media only screen and (max-width: $bp-medium) {
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        @media only screen and (max-width: $bp-small) {
+            flex-direction: column;
+            padding: 1.5rem .5rem;
+        }
     }
 
     &__icon {
@@ -173,6 +202,12 @@
         margin-right: 2rem;
         fill: currentColor; //sets the same color as the color of the parent element. Just like inherit.
 
+        @media only screen and (max-width: $bp-small) {
+            margin-right: 0;
+            margin-bottom: .7rem;
+            width: 1.5rem;
+            height: 1.5rem;
+        }
     }
 }
 
@@ -182,6 +217,10 @@
     color: var(--color-grey-light-4);
     text-align: center;
     padding: 2.5rem;
+
+    @media only screen and (max-width: $bp-medium) {
+        display: none;
+    }
 }
 
 
@@ -208,10 +247,15 @@
         text-transform: uppercase;
         letter-spacing: 1px;
         padding: 1.5rem 3rem;
+
+        @media only screen and (max-width: $bp-small) {
+            font-size: 1.8rem;
+            padding: 1.25rem 2rem;
+        }
     }
 
     &__stars {
-        margin-right: auto; //prevents the content of the element from taking all of the available space around it.
+        margin-right: auto; //prevents the element from taking all of the available space around it.
         display: flex;
     }
 
@@ -238,23 +282,36 @@
         margin-left: 3rem;
         color: #fff;
         padding: 0 2.25rem;
-        align-self: stretch;//makes the rating stretch and occupy the entire space available.
+        align-self: stretch; //makes the rating stretch and occupy the entire space available.
 
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+
+        @media only screen and (max-width: $bp-small) {
+            padding: 0 1.5rem;
+        }
     }
 
     &__rating-average {
         font-size: 2.5rem;
         font-weight: 300;
         margin-bottom: -3px;
+
+        @media only screen and (max-width: $bp-small) {
+            font-size: 1.8rem;
+
+        }
     }
 
     &__rating-count {
         font-size: 1.2rem;
         text-transform: uppercase;
+
+        @media only screen and (max-width: $bp-small) {
+            font-size: 1rem;
+        }
     }
 }
 
@@ -340,15 +397,18 @@
         margin-right: .7rem;
 
         //Older browsers
-        // background-image: url(../img/chevron-thin-right.svg);
-        // background-size: cover;
+        background-image: url(../img/chevron-thin-right.svg);
+        background-size: cover;
 
         //Newer browsers - masks - setting back-color and adding mask to show the color only where the image is, the chevron in this case.
-        background-color: var(--color-primary);
-        -webkit-mask-image: url(../img/chevron-thin-right.svg);
-        mask-image: url(../img/chevron-thin-right.svg);
-        -webkit-mask-size: cover;
-        mask-size: cover;
+        @supports (-webkit-mask-image: url()) or (mask-image: url()) {
+            background-color: var(--color-primary);
+            -webkit-mask-image: url(../img/chevron-thin-right.svg);
+            mask-image: url(../img/chevron-thin-right.svg);
+            -webkit-mask-size: cover;
+            mask-size: cover;
+            background-image: none;
+        }
     }
 }
 
@@ -365,6 +425,10 @@
         margin-right: auto; //pushes the friends photos maximum to the right.
     }
 
+    &__friends {
+        display: flex;
+    }
+
     &__photo {
         box-sizing: content-box; // by setting the box-sizing to the default of content-box we make the white border to be outside of the photo. Otherwise it will make the photos look smaller.
         height: 4rem;
@@ -373,7 +437,7 @@
         border: 3px solid #fff;
 
         &:not(:last-child) {
-            margin-right: -1.5rem; //by setting a negative margin right, we stack the photos a little bit on top of each other.
+            margin-right: -2rem; //by setting a negative margin right, we stack the photos a little bit on top of each other.
         }
     }
 }
@@ -386,6 +450,11 @@
     margin-bottom: 3.5rem;
     position: relative;
     overflow: hidden;
+
+    @media only screen and (max-width: $bp-medium) {
+        padding: 2rem;
+        margin-bottom: 3rem;
+    }
 
     &__text {
         margin-bottom: 2rem;
@@ -444,6 +513,10 @@
 .cta {
     padding: 3.5rem 0;
     text-align: center;
+
+    @media only screen and (max-width: $bp-medium) {
+        padding: 2.5rem 0;
+    }
 
     &__book-now {
         font-size: 2rem;
